@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.bibliotecafx.controllers.GerenciarLivrosController">
+    <top>
+        <Label text="Gerenciar Livros" style="-fx-font-size: 18px; -fx-padding: 10;" />
+    </top>
+    <center>
+        <VBox spacing="10" alignment="CENTER" style="-fx-padding: 10;">
+            <TableView fx:id="tabelaLivros">
+                <columns>
+                    <TableColumn text="ID" fx:id="colunaId" />
+                    <TableColumn text="Título" fx:id="colunaTitulo" />
+                    <TableColumn text="Autor" fx:id="colunaAutor" />
+                    <TableColumn text="Disponível" fx:id="colunaDisponivel" />
+                </columns>
+            </TableView>
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Adicionar Livro" onAction="#adicionarLivro" />
+                <Button text="Editar Livro" onAction="#editarLivro" />
+                <Button text="Remover Livro" onAction="#removerLivro" />
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
