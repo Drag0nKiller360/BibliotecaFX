@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.bibliotecafx.controllers.GerenciarUsuariosController" spacing="10" alignment="CENTER">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Título -->
+    <Label text="Cadastro de Aluno" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+    <!-- Campo Nome -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Nome:" minWidth="80"/>
+        <TextField fx:id="txtNome" promptText="Digite o nome do aluno" prefWidth="250"/>
+    </HBox>
+
+    <!-- Campo Matrícula -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Matrícula:" minWidth="80"/>
+        <TextField fx:id="txtMatricula" promptText="Digite a matrícula do aluno" prefWidth="250"/>
+    </HBox>
+
+    <!-- Campo E-mail Institucional -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="E-mail:" minWidth="80"/>
+        <TextField fx:id="txtEmailInstitucional" promptText="Digite o e-mail institucional" prefWidth="250"/>
+    </HBox>
+
+    <!-- Botões -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Salvar" onAction="#adicionarAluno" />
+        <Button text="Cancelar" onAction="#cancelarCadastro" />
+    </HBox>
+</VBox>

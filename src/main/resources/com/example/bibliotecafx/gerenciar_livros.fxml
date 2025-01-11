@@ -14,16 +14,19 @@
         <VBox spacing="10" alignment="CENTER" style="-fx-padding: 10;">
             <TableView fx:id="tabelaLivros">
                 <columns>
-                    <TableColumn text="ID" fx:id="colunaId" />
-                    <TableColumn text="Título" fx:id="colunaTitulo" />
-                    <TableColumn text="Autor" fx:id="colunaAutor" />
-                    <TableColumn text="Disponível" fx:id="colunaDisponivel" />
+                    <TableColumn text="ID" fx:id="id" />
+                    <TableColumn text="Título" fx:id="titulo" />
+                    <TableColumn text="Autor" fx:id="autor" />
+                    <TableColumn text="Disponível" fx:id="disponivel" />
                 </columns>
             </TableView>
             <HBox spacing="10" alignment="CENTER">
-                <Button text="Adicionar Livro" onAction="#adicionarLivro" />
+                <Button text="Adicionar Livro" onAction="#telaAdicionarLivro" />
                 <Button text="Editar Livro" onAction="#editarLivro" />
                 <Button text="Remover Livro" onAction="#removerLivro" />
+            </HBox>
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Voltar" onAction="#telaMenu" />
             </HBox>
         </VBox>
     </center>

@@ -1,16 +1,22 @@
 package com.example.bibliotecafx.models;
 
-public class Livro {
+import java.io.Serializable;
+
+public class Livro implements Serializable {
     private int id;
     private String titulo;
     private String autor;
-    private String genero;
+    private int paginas;
+    private int anoLancamento;
+    private int genero;
     private boolean disponivel;
 
-    public Livro(int id, String titulo, String autor, String genero, boolean disponivel) {
+    public Livro(int id, String titulo, String autor, int paginas, int anoLancamento, int genero, boolean disponivel) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
+        this.paginas = paginas;
+        this.anoLancamento = anoLancamento;
         this.genero = genero;
         this.disponivel = disponivel;
     }
@@ -39,11 +45,27 @@ public class Livro {
         this.autor = autor;
     }
 
-    public String getGenero() {
+    public int getPaginas() {
+        return paginas;
+    }
+
+    public void setPaginas(int paginas) {
+        this.paginas = paginas;
+    }
+
+    public int getAnoLancamento() {
+        return anoLancamento;
+    }
+
+    public void setAnoLancamento(int anoLancamento) {
+        this.anoLancamento = anoLancamento;
+    }
+
+    public int getGenero() {
         return genero;
     }
 
-    public void setGenero(String genero) {
+    public void setGenero(int genero) {
         this.genero = genero;
     }
 
@@ -53,16 +75,5 @@ public class Livro {
 
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
-    }
-
-    @Override
-    public String toString() {
-        return "Livro{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
-                ", autor='" + autor + '\'' +
-                ", genero='" + genero + '\'' +
-                ", disponivel=" + disponivel +
-                '}';
     }
 }

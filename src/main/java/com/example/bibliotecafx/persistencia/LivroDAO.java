@@ -1,96 +1,68 @@
 package com.example.bibliotecafx.persistencia;
 
-import com.example.bibliotecafx.models.Livro;
-
-import java.sql.*;
+import com.example.bibliotecafx.models.*;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
-public class LivroDAO {
+public class LivroDAO implements Serializable{
 
-    public static void criarTabela() {
-        String sql = """
-            CREATE TABLE IF NOT EXISTS livros (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                titulo TEXT NOT NULL,
-                autor TEXT NOT NULL,
-                genero TEXT,
-                disponivel BOOLEAN NOT NULL
-            );
-        """;
+    @Serial
+    private static final long serialVersionUID = 1L;
+    private static LivroDAO instance;
+    @SuppressWarnings("FieldMayBeFinal")
+    private HashSet<Livro> livros;
 
-        try (Connection conn = BancoDeDados.conectar();
-             Statement stmt = conn.createStatement()) {
-            stmt.execute(sql);
-        } catch (SQLException e) {
-            System.err.println("Erro ao criar tabela de livros: " + e.getMessage());
-        }
+    // Caminho do arquivo para salvar os dados
+    private static final String FILE_PATH = "src/main/java/com/example/bibliotecafx/persistencia/bin/livros.bin";
+
+    private LivroDAO() {
+        // Inicializa a lista de Livros
+        this.livros = new HashSet<>();
     }
 
-    public static void inserirLivro(Livro livro) {
-        String sql = "INSERT INTO livros (titulo, autor, genero, disponivel) VALUES (?, ?, ?, ?)";
-
-        try (Connection conn = BancoDeDados.conectar();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, livro.getTitulo());
-            pstmt.setString(2, livro.getAutor());
-            pstmt.setString(3, livro.getGenero());
-            pstmt.setBoolean(4, livro.isDisponivel());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Erro ao inserir livro: " + e.getMessage());
-        }
-    }
-
-    public static List<Livro> listarLivros() {
-        String sql = "SELECT * FROM livros";
-        List<Livro> livros = new ArrayList<>();
-
-        try (Connection conn = BancoDeDados.conectar();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-                Livro livro = new Livro(
-                        rs.getInt("id"),
-                        rs.getString("titulo"),
-                        rs.getString("autor"),
-                        rs.getString("genero"),
-                        rs.getBoolean("disponivel")
-                );
-                livros.add(livro);
+    public static LivroDAO getInstance() {
+        if (instance == null) {
+            instance = carregarDados(); // Tenta carregar os dados do arquivo
+            if (instance == null) {
+                instance = new LivroDAO(); // Cria uma nova instância se o arquivo não existir
             }
-        } catch (SQLException e) {
-            System.err.println("Erro ao listar livros: " + e.getMessage());
         }
+        return instance;
+    }
 
+    public HashSet<Livro> getLivros() {
         return livros;
     }
 
-    public static void atualizarLivro(Livro livro) {
-        String sql = "UPDATE livros SET titulo = ?, autor = ?, genero = ?, disponivel = ? WHERE id = ?";
-
-        try (Connection conn = BancoDeDados.conectar();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, livro.getTitulo());
-            pstmt.setString(2, livro.getAutor());
-            pstmt.setString(3, livro.getGenero());
-            pstmt.setBoolean(4, livro.isDisponivel());
-            pstmt.setInt(5, livro.getId());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Erro ao atualizar livro: " + e.getMessage());
-        }
+    public void adicionarLivro(Livro livro) {
+        this.livros.add(livro);
     }
 
-    public static void removerLivro(int id) {
-        String sql = "DELETE FROM livros WHERE id = ?";
+    public void removerLivro(Livro livro) {
+        this.livros.remove(livro);
+    }
 
-        try (Connection conn = BancoDeDados.conectar();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, id);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Erro ao remover livro: " + e.getMessage());
+    // Método para salvar os dados nos arquivos
+    public void salvarDados() {
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_PATH))) {
+                oos.writeObject(instance);
+            } catch (IOException e) {
+                System.err.println("Erro ao salvar os dados: " + e.getMessage());
+            }
+    }
+
+    //Método para carregar os dados dos arquivos
+    private static LivroDAO carregarDados() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_PATH))) {
+            return (LivroDAO) ois.readObject();
+        } catch (FileNotFoundException e) {
+            System.out.println("Arquivo não encontrado. Criando um novo banco de dados.");
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Erro ao carregar os dados: " + e.getMessage());
         }
+
+        return null;
     }
 }

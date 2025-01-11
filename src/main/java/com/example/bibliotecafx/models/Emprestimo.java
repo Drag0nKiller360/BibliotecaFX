@@ -1,20 +1,24 @@
 package com.example.bibliotecafx.models;
 
-import java.time.LocalDate;
+import java.util.Date;
+import java.util.HashSet;
 
 public class Emprestimo {
-    private int id;
-    private Livro livro;
-    private Usuario usuario;
-    private LocalDate dataEmprestimo;
-    private LocalDate dataDevolucao;
 
-    public Emprestimo(int id, Livro livro, Usuario usuario, LocalDate dataEmprestimo, LocalDate dataDevolucao) {
+    private int id;
+    private Date dataEmprestimo;
+    private Date dataPrevisaoDevolucao;
+    private Date dataRealDevolucao;
+    private int usuarioId;
+    private HashSet<Integer> livroId;
+
+    public Emprestimo(int id, Date dataEmprestimo, Date dataPrevisaoDevolucao, Date dataRealDevolucao, int usuarioId, HashSet<Integer> livroId) {
         this.id = id;
-        this.livro = livro;
-        this.usuario = usuario;
         this.dataEmprestimo = dataEmprestimo;
-        this.dataDevolucao = dataDevolucao;
+        this.dataPrevisaoDevolucao = dataPrevisaoDevolucao;
+        this.dataRealDevolucao = dataRealDevolucao;
+        this.usuarioId = usuarioId;
+        this.livroId = livroId;
     }
 
     public int getId() {
@@ -25,46 +29,43 @@ public class Emprestimo {
         this.id = id;
     }
 
-    public Livro getLivro() {
-        return livro;
-    }
-
-    public void setLivro(Livro livro) {
-        this.livro = livro;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public LocalDate getDataEmprestimo() {
+    public Date getDataEmprestimo() {
         return dataEmprestimo;
     }
 
-    public void setDataEmprestimo(LocalDate dataEmprestimo) {
+    public void setDataEmprestimo(Date dataEmprestimo) {
         this.dataEmprestimo = dataEmprestimo;
     }
 
-    public LocalDate getDataDevolucao() {
-        return dataDevolucao;
+    public Date getDataPrevisaoDevolucao() {
+        return dataPrevisaoDevolucao;
     }
 
-    public void setDataDevolucao(LocalDate dataDevolucao) {
-        this.dataDevolucao = dataDevolucao;
+    public void setDataPrevisaoDevolucao(Date dataPrevisaoDevolucao) {
+        this.dataPrevisaoDevolucao = dataPrevisaoDevolucao;
     }
 
-    @Override
-    public String toString() {
-        return "Emprestimo{" +
-                "id=" + id +
-                ", livro=" + livro +
-                ", usuario=" + usuario +
-                ", dataEmprestimo=" + dataEmprestimo +
-                ", dataDevolucao=" + dataDevolucao +
-                '}';
+    public Date getDataRealDevolucao() {
+        return dataRealDevolucao;
+    }
+
+    public void setDataRealDevolucao(Date dataRealDevolucao) {
+        this.dataRealDevolucao = dataRealDevolucao;
+    }
+
+    public int getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
+    public HashSet<Integer> getLivroId() {
+        return livroId;
+    }
+
+    public void setLivroId(HashSet<Integer> livroId) {
+        this.livroId = livroId;
     }
 }

@@ -22,8 +22,11 @@
                 </columns>
             </TableView>
             <HBox spacing="10" alignment="CENTER">
-                <Button text="Registrar Empréstimo" onAction="#registrarEmprestimo" />
+                <Button text="Registrar Empréstimo" onAction="#telaRegistrarEmprestimo" />
                 <Button text="Registrar Devolução" onAction="#registrarDevolucao" />
+            </HBox>
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Voltar" onAction="#telaMenu" />
             </HBox>
         </VBox>
     </center>

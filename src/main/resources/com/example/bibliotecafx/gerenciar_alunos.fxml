@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.bibliotecafx.controllers.GerenciarUsuariosController">
+    <top>
+        <Label text="Gerenciar Alunos" style="-fx-font-size: 18px; -fx-padding: 10;" />
+    </top>
+    <center>
+        <VBox spacing="10" alignment="CENTER" style="-fx-padding: 10;">
+            <TableView fx:id="tabelaAlunos">
+                <columns>
+                    <TableColumn text="ID" fx:id="colunaId" />
+                    <TableColumn text="Nome" fx:id="colunaNome" />
+                    <TableColumn text="Matrícula" fx:id="colunaMatricula" />
+                    <TableColumn text="Email Institucional" fx:id="colunaEmail" />
+                </columns>
+            </TableView>
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Adicionar Aluno" onAction="#telaAdicionarAluno" />
+                <Button text="Editar Aluno" onAction="#editarAluno" />
+                <Button text="Remover Aluno" onAction="#removerAluno" />
+            </HBox>
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Voltar" onAction="#telaMenu" />
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
