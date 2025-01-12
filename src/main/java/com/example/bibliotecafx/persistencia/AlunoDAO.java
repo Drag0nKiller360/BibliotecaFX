@@ -2,7 +2,7 @@ package com.example.bibliotecafx.persistencia;
 
 import com.example.bibliotecafx.models.*;
 import java.io.*;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 public class AlunoDAO implements Serializable{
 
@@ -10,14 +10,14 @@ public class AlunoDAO implements Serializable{
     private static final long serialVersionUID = 1L;
     private static AlunoDAO instance;
     @SuppressWarnings("FieldMayBeFinal")
-    private HashSet<Aluno> alunos;
+    private ArrayList<Aluno> alunos;
 
     // Caminho do arquivo para salvar os dados
     private static final String FILE_PATH = "src/main/java/com/example/bibliotecafx/persistencia/bin/alunos.bin";
 
     private AlunoDAO() {
         // Inicializa a lista de Alunos
-        this.alunos = new HashSet<>();
+        this.alunos = new ArrayList<>();
     }
 
     public static AlunoDAO getInstance() {
@@ -30,7 +30,7 @@ public class AlunoDAO implements Serializable{
         return instance;
     }
 
-    public HashSet<Aluno> getAlunos() {
+    public ArrayList<Aluno> getAlunos() {
         return alunos;
     }
 

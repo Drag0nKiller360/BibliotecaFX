@@ -1,6 +1,8 @@
 package com.example.bibliotecafx.models;
 
-public class Visitante extends Usuario {
+import java.io.Serializable;
+
+public class Visitante extends Usuario implements Serializable {
     private String cpf;
     private String email;
 

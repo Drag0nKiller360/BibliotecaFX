@@ -1,4 +1,4 @@
-package com.example.bibliotecafx.controllers;
+package com.example.bibliotecafx.controllers.livros;
 
 import com.example.bibliotecafx.models.Livro;
 import com.example.bibliotecafx.persistencia.LivroDAO;
@@ -15,7 +15,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -46,6 +45,7 @@ public class GerenciarLivrosController {
         carregarDadosTabela();
     }
 
+    //Métodos
     private void configurarColunas() {
         // Associa as colunas aos atributos da classe Livro
         id.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
@@ -55,24 +55,31 @@ public class GerenciarLivrosController {
     }
 
     private void carregarDadosTabela() {
-        // Carrega os livros do DAO para a tabela
+        // Carrega os com.example.bibliotecafx.controllers.livros do DAO para a tabela
         ObservableList<Livro> livros = FXCollections.observableArrayList(livroDAO.getLivros());
         tabelaLivros.setItems(livros);
     }
 
     @FXML
-    private void pesquisarLivro() {
-        // Implementar funcionalidade para pesquisar livro
-    }
-
-    @FXML
-    private void adicionarLivro() {
-        // Implementar funcionalidade para adicionar livro
-    }
-
-    @FXML
     private void editarLivro() {
-        // Implementar funcionalidade para editar livro
+        try {
+            Livro livroSelecionado = tabelaLivros.getSelectionModel().getSelectedItem();
+            if (livroSelecionado != null) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/bibliotecafx/editar_livro.fxml"));
+                Parent root = loader.load();
+
+                EditarLivroController editarLivroController = loader.getController();
+                editarLivroController.setLivro(livroSelecionado);
+                editarLivroController.setOnSaveCallback(() -> atualizarTabela());
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Editar Livro");
+                stage.show();
+            }
+        } catch (IOException e) {
+            System.err.println("Erro ao carregar a janela de edição: " + e.getMessage());
+        }
     }
 
     @FXML
@@ -88,27 +95,15 @@ public class GerenciarLivrosController {
     }
 
     @FXML
-    private void telaAdicionarLivro() {
-        carregarTela("/com/example/bibliotecafx/adicionar_livro.fxml", "Cadastrar Livro");
+    private void telaAdicionarLivro(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        trocarTela("/com/example/bibliotecafx/adicionar_livro.fxml", "Cadastrar Livro", stage);
     }
 
     @FXML
     private void telaMenu(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         trocarTela("/com/example/bibliotecafx/menu_inicial.fxml", "Menu Inicial", stage);
-    }
-
-    private void carregarTela(String fxml, String titulo) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle(titulo);
-            stage.show();
-        } catch (IOException e) {
-            System.err.println("Erro ao apresentar tela: " + e.getMessage());
-        }
     }
 
     private void trocarTela(String fxml, String titulo, Stage stage) {
@@ -123,4 +118,9 @@ public class GerenciarLivrosController {
             System.err.println("Erro ao trocar de tela: " + e.getMessage());
         }
     }
+
+    private void atualizarTabela() {
+        tabelaLivros.refresh();
+    }
+
 }

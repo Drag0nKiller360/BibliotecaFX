@@ -1,9 +1,10 @@
 package com.example.bibliotecafx.models;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 
-public class Emprestimo {
+public class Emprestimo implements Serializable {
 
     private int id;
     private Date dataEmprestimo;

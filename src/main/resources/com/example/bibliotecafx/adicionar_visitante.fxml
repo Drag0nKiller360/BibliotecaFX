@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.bibliotecafx.controllers.GerenciarUsuariosController" spacing="10" alignment="CENTER">
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.bibliotecafx.controllers.usuarios.visitantes.CadastrarVisitanteController" spacing="10" alignment="CENTER">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
@@ -24,7 +24,7 @@
     <!-- Campo Matrícula -->
     <HBox spacing="10" alignment="CENTER_LEFT">
         <Label text="CPF:" minWidth="80"/>
-        <TextField fx:id="txtCPF" promptText="Digite o cpf do visitante" prefWidth="250"/>
+        <TextField fx:id="txtCpf" promptText="Digite o cpf do visitante" prefWidth="250"/>
     </HBox>
 
     <!-- Campo E-mail Institucional -->
@@ -35,7 +35,7 @@
 
     <!-- Botões -->
     <HBox spacing="10" alignment="CENTER">
-        <Button text="Salvar" onAction="#adicionarVisitante" />
-        <Button text="Cancelar" onAction="#cancelarCadastro" />
+        <Button text="Salvar" onAction="#salvarVisitante" />
+        <Button text="Cancelar" onAction="#cancelar" />
     </HBox>
 </VBox>

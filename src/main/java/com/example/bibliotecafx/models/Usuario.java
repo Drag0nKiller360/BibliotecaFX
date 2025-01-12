@@ -1,6 +1,8 @@
 package com.example.bibliotecafx.models;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
     private int id;
     private String nome;
 

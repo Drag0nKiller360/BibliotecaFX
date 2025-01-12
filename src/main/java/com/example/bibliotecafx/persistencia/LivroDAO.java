@@ -3,8 +3,6 @@ package com.example.bibliotecafx.persistencia;
 import com.example.bibliotecafx.models.*;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 
 public class LivroDAO implements Serializable{
 
@@ -12,14 +10,14 @@ public class LivroDAO implements Serializable{
     private static final long serialVersionUID = 1L;
     private static LivroDAO instance;
     @SuppressWarnings("FieldMayBeFinal")
-    private HashSet<Livro> livros;
+    private ArrayList<Livro> livros;
 
     // Caminho do arquivo para salvar os dados
     private static final String FILE_PATH = "src/main/java/com/example/bibliotecafx/persistencia/bin/livros.bin";
 
     private LivroDAO() {
         // Inicializa a lista de Livros
-        this.livros = new HashSet<>();
+        this.livros = new ArrayList<>();
     }
 
     public static LivroDAO getInstance() {
@@ -32,7 +30,7 @@ public class LivroDAO implements Serializable{
         return instance;
     }
 
-    public HashSet<Livro> getLivros() {
+    public ArrayList<Livro> getLivros() {
         return livros;
     }
 

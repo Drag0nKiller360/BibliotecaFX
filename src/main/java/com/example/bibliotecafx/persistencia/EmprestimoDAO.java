@@ -2,7 +2,7 @@ package com.example.bibliotecafx.persistencia;
 
 import com.example.bibliotecafx.models.*;
 import java.io.*;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 public class EmprestimoDAO implements Serializable{
 
@@ -10,14 +10,14 @@ public class EmprestimoDAO implements Serializable{
     private static final long serialVersionUID = 1L;
     private static EmprestimoDAO instance;
     @SuppressWarnings("FieldMayBeFinal")
-    private HashSet<Emprestimo> emprestimos;
+    private ArrayList<Emprestimo> emprestimos;
 
     // Caminho do arquivo para salvar os dados
     private static final String FILE_PATH = "src/main/java/com/example/bibliotecafx/persistencia/bin/emprestimos.bin";
 
     private EmprestimoDAO() {
         // Inicializa a lista de Empréstimos
-        this.emprestimos = new HashSet<>();
+        this.emprestimos = new ArrayList<>();
     }
 
     public static EmprestimoDAO getInstance() {
@@ -30,7 +30,7 @@ public class EmprestimoDAO implements Serializable{
         return instance;
     }
 
-    public HashSet<Emprestimo> getEmprestimos() {
+    public ArrayList<Emprestimo> getEmprestimos() {
         return emprestimos;
     }
 

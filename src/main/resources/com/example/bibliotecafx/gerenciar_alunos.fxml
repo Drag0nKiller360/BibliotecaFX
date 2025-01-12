@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.bibliotecafx.controllers.GerenciarUsuariosController">
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.bibliotecafx.controllers.usuarios.alunos.GerenciarAlunosController">
     <top>
         <Label text="Gerenciar Alunos" style="-fx-font-size: 18px; -fx-padding: 10;" />
     </top>

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.bibliotecafx.controllers.CadastroLivroController" spacing="10" alignment="CENTER">
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.bibliotecafx.controllers.livros.CadastrarLivroController" spacing="10" alignment="CENTER">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
@@ -39,12 +39,6 @@
     <HBox spacing="10" alignment="CENTER_LEFT">
         <Label text="Gênero:" minWidth="120"/>
         <ComboBox fx:id="comboGenero" promptText="Selecione o gênero" prefWidth="300"/>
-    </HBox>
-
-    <!-- Campo Disponível -->
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Disponível:" minWidth="120"/>
-        <CheckBox fx:id="checkDisponivel"/>
     </HBox>
 
     <!-- Botões -->
