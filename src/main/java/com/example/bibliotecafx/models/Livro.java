@@ -8,10 +8,10 @@ public class Livro implements Serializable {
     private String autor;
     private int paginas;
     private int anoLancamento;
-    private int genero;
+    private String genero;
     private boolean disponivel;
 
-    public Livro(int id, String titulo, String autor, int paginas, int anoLancamento, int genero, boolean disponivel) {
+    public Livro(int id, String titulo, String autor, int paginas, int anoLancamento, String genero, boolean disponivel) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
@@ -61,11 +61,11 @@ public class Livro implements Serializable {
         this.anoLancamento = anoLancamento;
     }
 
-    public int getGenero() {
+    public String getGenero() {
         return genero;
     }
 
-    public void setGenero(int genero) {
+    public void setGenero(String genero) {
         this.genero = genero;
     }
 

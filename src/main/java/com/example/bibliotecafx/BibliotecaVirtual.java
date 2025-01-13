@@ -1,13 +1,10 @@
 package com.example.bibliotecafx;
 
-import com.example.bibliotecafx.models.Aluno;
 import com.example.bibliotecafx.persistencia.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.util.Scanner;
 import java.io.IOException;
 
 public class BibliotecaVirtual extends Application {

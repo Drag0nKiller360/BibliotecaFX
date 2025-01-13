@@ -14,10 +14,13 @@
         <VBox spacing="10" alignment="CENTER" style="-fx-padding: 10;">
             <TableView fx:id="tabelaLivros">
                 <columns>
-                    <TableColumn text="ID" fx:id="id" />
-                    <TableColumn text="Título" fx:id="titulo" />
-                    <TableColumn text="Autor" fx:id="autor" />
-                    <TableColumn text="Disponível" fx:id="disponivel" />
+                    <TableColumn text="ID" fx:id="colunaId" />
+                    <TableColumn text="Título" fx:id="colunaTitulo" />
+                    <TableColumn text="Autor" fx:id="colunaAutor" />
+                    <TableColumn text="Páginas" fx:id="colunaPaginas" />
+                    <TableColumn text="Ano" fx:id="colunaAnoLancamento" />
+                    <TableColumn text="Gênero" fx:id="colunaGenero" />
+                    <TableColumn text="Disponível" fx:id="colunaDisponivel" />
                 </columns>
             </TableView>
             <HBox spacing="10" alignment="CENTER">

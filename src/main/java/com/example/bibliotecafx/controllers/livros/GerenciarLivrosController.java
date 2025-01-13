@@ -1,6 +1,7 @@
 package com.example.bibliotecafx.controllers.livros;
 
 import com.example.bibliotecafx.models.Livro;
+import com.example.bibliotecafx.persistencia.AlunoDAO;
 import com.example.bibliotecafx.persistencia.LivroDAO;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -25,33 +26,44 @@ public class GerenciarLivrosController {
     private TableView<Livro> tabelaLivros;
 
     @FXML
-    private TableColumn<Livro, Integer> id;
+    private TableColumn<Livro, Integer> colunaId;
 
     @FXML
-    private TableColumn<Livro, String> titulo;
+    private TableColumn<Livro, String> colunaTitulo;
 
     @FXML
-    private TableColumn<Livro, String> autor;
+    private TableColumn<Livro, String> colunaAutor;
 
     @FXML
-    private TableColumn<Livro, Boolean> disponivel;
+    private TableColumn<Livro, Integer> colunaPaginas;
 
+    @FXML
+    private TableColumn<Livro, Integer> colunaAnoLancamento;
+
+    @FXML
+    private TableColumn<Livro, String> colunaGenero;
+
+    @FXML
+    private TableColumn<Livro, String> colunaDisponivel;
+
+    private ObservableList<Livro> listaLivros;
     private LivroDAO livroDAO;
 
-    @FXML
     public void initialize() {
-        livroDAO = LivroDAO.getInstance(); // Carrega o DAO
+        livroDAO = LivroDAO.getInstance();
         configurarColunas();
         carregarDadosTabela();
     }
 
-    //Métodos
     private void configurarColunas() {
-        // Associa as colunas aos atributos da classe Livro
-        id.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
-        titulo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulo()));
-        autor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAutor()));
-        disponivel.setCellValueFactory(cellData -> new SimpleBooleanProperty(cellData.getValue().isDisponivel()).asObject());
+        colunaId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
+        colunaTitulo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulo()));
+        colunaAutor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAutor()));
+        colunaPaginas.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getPaginas()).asObject());
+        colunaAnoLancamento.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAnoLancamento()).asObject());
+        colunaGenero.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGenero()));
+        colunaDisponivel.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().isDisponivel() ? "Sim" : "Não"));
     }
 
     private void carregarDadosTabela() {
@@ -86,9 +98,13 @@ public class GerenciarLivrosController {
     private void removerLivro() {
         Livro livroSelecionado = tabelaLivros.getSelectionModel().getSelectedItem();
         if (livroSelecionado != null) {
-            tabelaLivros.getItems().remove(livroSelecionado);
-            livroDAO.removerLivro(livroSelecionado);
-            System.out.println("Livro removido: " + livroSelecionado.getTitulo());
+            if(livroSelecionado.isDisponivel()){
+                tabelaLivros.getItems().remove(livroSelecionado);
+                livroDAO.removerLivro(livroSelecionado);
+                System.out.println("Livro removido: " + livroSelecionado.getTitulo());
+            } else {
+                System.out.println("Não é possível remover um livro indisponível!");
+            }
         } else {
             System.out.println("Nenhum livro selecionado!");
         }

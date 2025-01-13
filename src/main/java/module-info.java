@@ -2,6 +2,7 @@ module com.example.bibliotecafx {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
+    requires java.sql;
 
     // Exporta pacotes para o módulo javafx.fxml
     opens com.example.bibliotecafx.controllers to javafx.fxml;
@@ -9,4 +10,5 @@ module com.example.bibliotecafx {
     opens com.example.bibliotecafx.controllers.usuarios.alunos to javafx.fxml;
     opens com.example.bibliotecafx.controllers.livros to javafx.fxml;
     opens com.example.bibliotecafx.controllers.usuarios.visitantes to javafx.fxml;
+    opens com.example.bibliotecafx.controllers.emprestimos to javafx.fxml;
 }

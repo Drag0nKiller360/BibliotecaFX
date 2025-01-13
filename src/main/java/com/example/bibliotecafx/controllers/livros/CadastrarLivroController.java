@@ -58,7 +58,7 @@ public class CadastrarLivroController {
                 return;
             }
 
-            Livro novoLivro = new Livro(id, titulo, autor, paginas, anoLancamento, genero.hashCode(), disponivel);
+            Livro novoLivro = new Livro(id, titulo, autor, paginas, anoLancamento, genero, disponivel);
             livroDAO.adicionarLivro(novoLivro);
             System.out.println("Livro cadastrado com sucesso!");
 

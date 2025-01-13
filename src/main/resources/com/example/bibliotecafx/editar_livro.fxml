@@ -3,24 +3,49 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.geometry.Insets?>
+
 <VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.bibliotecafx.controllers.livros.EditarLivroController" spacing="10" alignment="CENTER">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
 
-    <Label text="Editar Livro" style="-fx-font-size: 16px;" />
-    <GridPane hgap="10" vgap="10">
-        <Label text="Título:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-        <TextField fx:id="tituloField" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+    <!-- Título da tela -->
+    <Label text="Cadastro de Livro" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
 
-        <Label text="Autor:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-        <TextField fx:id="autorField" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+    <!-- Campo Título -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Título:" minWidth="120"/>
+        <TextField fx:id="tituloField" promptText="Digite o título do livro" prefWidth="300"/>
+    </HBox>
 
-        <Label text="Ano:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-        <TextField fx:id="anoField" GridPane.rowIndex="2" GridPane.columnIndex="1" />
-    </GridPane>
+    <!-- Campo Autor -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Autor:" minWidth="120"/>
+        <TextField fx:id="autorField" promptText="Digite o nome do autor" prefWidth="300"/>
+    </HBox>
+
+    <!-- Campo Páginas -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Páginas:" minWidth="120"/>
+        <TextField fx:id="paginasField" promptText="Digite o número de páginas" prefWidth="300"/>
+    </HBox>
+
+    <!-- Campo Ano de Lançamento -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Ano de Lançamento:" minWidth="120"/>
+        <TextField fx:id="anoField" promptText="Digite o ano de lançamento" prefWidth="300"/>
+    </HBox>
+
+    <!-- Campo Gênero -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Gênero:" minWidth="120"/>
+        <ComboBox fx:id="comboGeneroField" promptText="Selecione o gênero" prefWidth="300"/>
+    </HBox>
+
+    <!-- Botões -->
     <HBox spacing="10" alignment="CENTER">
-        <Button text="Salvar" onAction="#salvar" />
-        <Button text="Cancelar" onAction="#cancelar" />
+        <Button text="Salvar" onAction="#salvar"/>
+        <Button text="Voltar" onAction="#cancelar"/>
     </HBox>
 </VBox>
+

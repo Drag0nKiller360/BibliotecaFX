@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.bibliotecafx.controllers.GerenciarEmprestimosController">
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.bibliotecafx.controllers.emprestimos.GerenciarEmprestimosController">
     <top>
         <Label text="Gerenciar Empréstimos" style="-fx-font-size: 18px; -fx-padding: 10;" />
     </top>
@@ -16,9 +16,11 @@
                 <columns>
                     <TableColumn text="ID" fx:id="colunaId" />
                     <TableColumn text="Livro" fx:id="colunaLivro" />
-                    <TableColumn text="Membro" fx:id="colunaMembro" />
+                    <TableColumn text="Usuário" fx:id="colunaUsuario" />
                     <TableColumn text="Data Empréstimo" fx:id="colunaDataEmprestimo" />
+                    <TableColumn text="Prazo Devolução" fx:id="colunaDataPrevistaDevolucao" />
                     <TableColumn text="Data Devolução" fx:id="colunaDataDevolucao" />
+                    <TableColumn text="Status" fx:id="colunaStatus" />
                 </columns>
             </TableView>
             <HBox spacing="10" alignment="CENTER">

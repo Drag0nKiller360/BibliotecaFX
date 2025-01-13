@@ -1,23 +1,24 @@
 package com.example.bibliotecafx.models;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
+import java.time.LocalDate;
 
 public class Emprestimo implements Serializable {
 
     private int id;
-    private Date dataEmprestimo;
-    private Date dataPrevisaoDevolucao;
-    private Date dataRealDevolucao;
+    private LocalDate dataEmprestimo;
+    private LocalDate dataDevolucao;
+    private LocalDate dataPrevistaDevolucao;
+    private Status status;
     private int usuarioId;
-    private HashSet<Integer> livroId;
+    private int livroId;
 
-    public Emprestimo(int id, Date dataEmprestimo, Date dataPrevisaoDevolucao, Date dataRealDevolucao, int usuarioId, HashSet<Integer> livroId) {
+    public Emprestimo(int id, LocalDate dataEmprestimo, LocalDate dataDevolucao, LocalDate dataPrevistaDevolucao, Status status, int usuarioId, int livroId) {
         this.id = id;
         this.dataEmprestimo = dataEmprestimo;
-        this.dataPrevisaoDevolucao = dataPrevisaoDevolucao;
-        this.dataRealDevolucao = dataRealDevolucao;
+        this.dataDevolucao = dataDevolucao;
+        this.dataPrevistaDevolucao = dataPrevistaDevolucao;
+        this.status = status;
         this.usuarioId = usuarioId;
         this.livroId = livroId;
     }
@@ -30,28 +31,36 @@ public class Emprestimo implements Serializable {
         this.id = id;
     }
 
-    public Date getDataEmprestimo() {
+    public LocalDate getDataEmprestimo() {
         return dataEmprestimo;
     }
 
-    public void setDataEmprestimo(Date dataEmprestimo) {
+    public void setDataEmprestimo(LocalDate dataEmprestimo) {
         this.dataEmprestimo = dataEmprestimo;
     }
 
-    public Date getDataPrevisaoDevolucao() {
-        return dataPrevisaoDevolucao;
+    public LocalDate getDataDevolucao() {
+        return dataDevolucao;
     }
 
-    public void setDataPrevisaoDevolucao(Date dataPrevisaoDevolucao) {
-        this.dataPrevisaoDevolucao = dataPrevisaoDevolucao;
+    public void setDataDevolucao(LocalDate dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
     }
 
-    public Date getDataRealDevolucao() {
-        return dataRealDevolucao;
+    public LocalDate getDataPrevistaDevolucao() {
+        return dataPrevistaDevolucao;
     }
 
-    public void setDataRealDevolucao(Date dataRealDevolucao) {
-        this.dataRealDevolucao = dataRealDevolucao;
+    public void setDataPrevistaDevolucao(LocalDate dataPrevistaDevolucao) {
+        this.dataPrevistaDevolucao = dataPrevistaDevolucao;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public int getUsuarioId() {
@@ -62,11 +71,11 @@ public class Emprestimo implements Serializable {
         this.usuarioId = usuarioId;
     }
 
-    public HashSet<Integer> getLivroId() {
+    public int getLivroId() {
         return livroId;
     }
 
-    public void setLivroId(HashSet<Integer> livroId) {
+    public void setLivroId(int livroId) {
         this.livroId = livroId;
     }
 }

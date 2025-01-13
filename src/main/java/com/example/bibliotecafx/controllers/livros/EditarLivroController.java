@@ -2,6 +2,7 @@ package com.example.bibliotecafx.controllers.livros;
 
 import com.example.bibliotecafx.models.Livro;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -13,20 +14,31 @@ public class EditarLivroController {
     private TextField autorField;
 
     @FXML
+    private TextField paginasField;
+
+    @FXML
     private TextField anoField;
+
+    @FXML
+    private ComboBox<String> comboGeneroField;
 
     private Livro livro; // Livro que será editado
     private Runnable onSaveCallback; // Callback para atualizar a tabela após salvar
 
-    /**
-     * Inicializa o controlador com os dados do livro a ser editado.
-     */
+    @FXML
+    public void initialize() {
+        // Adiciona opções ao ComboBox de gênero
+        comboGeneroField.getItems().addAll("Ficção", "Romance", "Biografia", "Fantasia", "Terror", "Outros");
+    }
+
     public void setLivro(Livro livro) {
         this.livro = livro;
         if (livro != null) {
             tituloField.setText(livro.getTitulo());
             autorField.setText(livro.getAutor());
+            paginasField.setText(String.valueOf(livro.getPaginas()));
             anoField.setText(String.valueOf(livro.getAnoLancamento()));
+            comboGeneroField.setValue(livro.getGenero());
         }
     }
 
@@ -45,7 +57,9 @@ public class EditarLivroController {
         if (livro != null) {
             livro.setTitulo(tituloField.getText());
             livro.setAutor(autorField.getText());
+            livro.setPaginas(Integer.parseInt(paginasField.getText()));
             livro.setAnoLancamento(Integer.parseInt(anoField.getText()));
+            livro.setGenero(comboGeneroField.getValue());
         }
 
         if (onSaveCallback != null) {

@@ -44,6 +44,6 @@
     <!-- Botões -->
     <HBox spacing="10" alignment="CENTER">
         <Button text="Salvar" onAction="#salvarLivro"/>
-        <Button text="Cancelar" onAction="#cancelar"/>
+        <Button text="Voltar" onAction="#cancelar"/>
     </HBox>
 </VBox>

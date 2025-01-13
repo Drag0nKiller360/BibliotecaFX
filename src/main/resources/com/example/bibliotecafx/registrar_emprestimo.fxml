@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.bibliotecafx.controllers.emprestimos.RegistrarEmprestimoController">
+    <left>
+        <VBox spacing="10" style="-fx-padding: 10;">
+            <Label text="Usuários" style="-fx-font-size: 16px;" />
+            <TableView fx:id="tabelaUsuarios">
+                <columns>
+                    <TableColumn text="ID" fx:id="colunaUsuarioId" />
+                    <TableColumn text="Nome" fx:id="colunaUsuarioNome" />
+                </columns>
+            </TableView>
+        </VBox>
+    </left>
+    <center>
+        <VBox spacing="10" style="-fx-padding: 10;">
+            <Label text="Livros Disponíveis" style="-fx-font-size: 16px;" />
+            <TableView fx:id="tabelaLivros">
+                <columns>
+                    <TableColumn text="ID" fx:id="colunaLivroId" />
+                    <TableColumn text="Título" fx:id="colunaLivroTitulo" />
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+    <bottom>
+        <VBox spacing="10" alignment="CENTER" style="-fx-padding: 10;">
+            <HBox spacing="10" alignment="CENTER">
+                <Label text="Data de Empréstimo:" />
+                <DatePicker fx:id="campoDataEmprestimo" />
+            </HBox>
+            <HBox spacing="10" alignment="CENTER">
+
+                <Button text="Registrar" onAction="#registrarEmprestimo" />
+                <Button text="Voltar" onAction="#cancelar" />
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>
